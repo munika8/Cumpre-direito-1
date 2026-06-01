@@ -667,14 +667,9 @@ function render(){
 }
 
 function getFamilia(nop){
-  var fkey=String(nop).substring(0,5);
-  return Object.keys(INSCRITOS).filter(function(n){return n!==nop&&String(n).substring(0,5)===fkey;})
-    .map(function(n){
-      var ins=INSCRITOS[n];
-      var u=utIdx[n];
-      return {nop:n,nome:ins.nome,sexo:ins.sexo,idade:ins.idade,sns:ins.sns||'',inds:u?u.inds:{}};
-    })
-    .sort(function(a,b){return a.nop.localeCompare(b.nop);});
+  var fkey=nop.substring(0,6);
+  return Object.keys(INSCRITOS).filter(function(n){return n!==nop&&n.substring(0,6)===fkey;})
+    .map(function(n){var ins=INSCRITOS[n];var u=utIdx[n];return{nop:n,nome:ins.nome,sexo:ins.sexo,idade:ins.idade,sns:ins.sns||'',inds:u?u.inds:{}};});
 }
 
 function renderTable(data){
